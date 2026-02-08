@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffd6e8, #d6f0ff);
   text-align: center;
   color: #444;
@@ -21,9 +21,11 @@ body {
   padding: 20px 15px 60px;
   max-width: 500px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
-h1 { color: #ff4d88; font-size: 28px; }
+h1 { color: #ff4d88; font-size: 26px; }
 h2 { color: #ff4d88; }
 
 .card {
@@ -45,10 +47,7 @@ button {
   margin: 8px;
   width: 90%;
   max-width: 260px;
-  transition: transform 0.2s ease, background 0.3s;
 }
-
-button:active { transform: scale(0.95); }
 
 .hidden { display: none; }
 
@@ -75,7 +74,6 @@ button:active { transform: scale(0.95); }
   to { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* Gallery mobile layout */
 .gallery {
   display: flex;
   justify-content: center;
@@ -90,7 +88,6 @@ button:active { transform: scale(0.95); }
   margin: 5px;
 }
 
-/* Forgive section layout */
 #forgiveSection {
   position: relative;
   min-height: 120px;
@@ -100,7 +97,6 @@ button:active { transform: scale(0.95); }
   position: absolute;
 }
 
-/* Music button */
 .music-btn {
   background: #ff4d88;
   font-size: 14px;
@@ -117,41 +113,31 @@ button:active { transform: scale(0.95); }
   <h1>Hey Bubu… 💌</h1>
 
   <div class="card">
-    <p>
-      I know I messed up… and I hate that I hurt you.  
-      You mean too much to me to let distance grow between us.
-    </p>
+    <p>I know I messed up… and I’m really sorry for hurting you.</p>
     <button onclick="showApology()">Tap if you're still mad 🥺</button>
   </div>
 
   <div id="apology" class="hidden card">
     <h2>I’m Really Sorry, Bubu 💖</h2>
-    <p>
-      Not just for what happened… but for making you feel anything less than loved.
-      You deserve patience, softness, and understanding from me.
-    </p>
-    <p>
-      I miss our laughs, our talks, and our silly little moments 🌸
-    </p>
+    <p>You mean so much to me, and I hate that I caused you pain.</p>
+    <p>I miss our laughs and our moments 🌸</p>
   </div>
 
   <div id="reasons" class="hidden card">
     <h2>Reasons I Love You 💗</h2>
-    <p>• Your smile fixes my worst days</p>
-    <p>• The way you care about people</p>
-    <p>• Your cute angry face (still adorable 😭)</p>
-    <p>• Every memory we share</p>
-    <p>• Because you're YOU, Bubu 💞</p>
+    <p>• Your smile</p>
+    <p>• Your kindness</p>
+    <p>• Our memories</p>
+    <p>• Everything about you, Bubu 💞</p>
   </div>
 
   <div id="memories" class="hidden card">
     <h2>Our Memories 📸</h2>
     <div class="gallery">
-      <img src="https://via.placeholder.com/150" alt="">
-      <img src="https://via.placeholder.com/150" alt="">
-      <img src="https://via.placeholder.com/150" alt="">
+      <img src="https://via.placeholder.com/150">
+      <img src="https://via.placeholder.com/150">
+      <img src="https://via.placeholder.com/150">
     </div>
-    <p>Every moment with you means everything to me.</p>
   </div>
 
   <div id="forgiveSection" class="hidden card">
@@ -162,7 +148,7 @@ button:active { transform: scale(0.95); }
 
   <div id="finalMessage" class="hidden card">
     <h2>Thank You, Bubu 🥹💞</h2>
-    <p>I promise to do better, listen more, and love you the way you deserve 🌷</p>
+    <p>I promise to do better and love you the way you deserve 🌷</p>
   </div>
 
   <button class="music-btn" onclick="playMusic()">Play Music 🎵</button>
@@ -174,14 +160,14 @@ button:active { transform: scale(0.95); }
 
 <script>
 function showApology() {
-  document.getElementById("apology").classList.remove("hidden");
-  document.getElementById("reasons").classList.remove("hidden");
-  document.getElementById("memories").classList.remove("hidden");
-  document.getElementById("forgiveSection").classList.remove("hidden");
+  apology.classList.remove("hidden");
+  reasons.classList.remove("hidden");
+  memories.classList.remove("hidden");
+  forgiveSection.classList.remove("hidden");
 }
 
 function forgiven() {
-  document.getElementById("finalMessage").classList.remove("hidden");
+  finalMessage.classList.remove("hidden");
 }
 
 function moveNoButton() {
@@ -197,7 +183,6 @@ function playMusic() {
   document.getElementById("bgMusic").play();
 }
 
-// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
