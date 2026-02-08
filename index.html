@@ -10,7 +10,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+ font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffd6e8, #d6f0ff);
   text-align: center;
   color: #444;
@@ -48,8 +48,6 @@ button {
   width: 90%;
   max-width: 260px;
 }
-
-button:active { transform: scale(0.95); }
 
 .hidden { display: none; }
 
@@ -92,7 +90,7 @@ button:active { transform: scale(0.95); }
 
 <div class="hearts-bg" id="hearts"></div>
 
-<div class="container">
+<div class="container" onclick="startMusicOnce()">
   <h1>Hey Bubu… 💌</h1>
 
   <div class="card">
@@ -128,11 +126,22 @@ button:active { transform: scale(0.95); }
 </div>
 
 <!-- Background Music -->
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+let musicStarted = false;
+
+function startMusicOnce() {
+  if (!musicStarted) {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.6;
+    music.play();
+    musicStarted = true;
+  }
+}
+
 function showApology() {
   document.getElementById("apology").classList.remove("hidden");
   document.getElementById("reasons").classList.remove("hidden");
@@ -163,15 +172,6 @@ function createHeart() {
   setTimeout(() => heart.remove(), 6000);
 }
 setInterval(createHeart, 400);
-
-// Try autoplay again after page loads (helps on some browsers)
-window.addEventListener("load", () => {
-  const music = document.getElementById("bgMusic");
-  music.volume = 0.6;
-  music.play().catch(() => {
-    document.body.addEventListener("click", () => music.play(), { once: true });
-  });
-});
 </script>
 
 </body>
