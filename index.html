@@ -17,28 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-#startScreen {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(135deg, #ff9ec4, #ffd6e8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-  flex-direction: column;
-  color: white;
-}
-
-#startScreen button {
-  padding: 15px 25px;
-  font-size: 18px;
-  border-radius: 30px;
-  border: none;
-  background: white;
-  color: #ff4d88;
-  margin-top: 20px;
-}
-
 .container {
   padding: 20px 15px 100px;
   max-width: 500px;
@@ -97,7 +75,6 @@ button {
 #forgiveSection { position: relative; min-height: 120px; }
 #noBtn { position: absolute; }
 
-/* Music button */
 #musicBtn {
   position: fixed;
   bottom: 15px;
@@ -113,12 +90,6 @@ button {
 </head>
 
 <body>
-
-<div id="startScreen">
-  <h2>For Bubu 💖</h2>
-  <p>I made something special for you…</p>
-  <button onclick="startExperience()">Open It 💌</button>
-</div>
 
 <div class="hearts-bg" id="hearts"></div>
 
@@ -157,22 +128,17 @@ button {
   </div>
 </div>
 
-<!-- Visible Music Button -->
 <button id="musicBtn" onclick="playMusic()">Play Our Song 🎵</button>
 
-<!-- Reliable Audio Source -->
-<audio id="bgMusic" loop controls style="display:none;">
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<!-- YOUR MUSIC FILE -->
+<audio id="bgMusic" loop>
+  <source src="bubu-song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function startExperience() {
-  document.getElementById("startScreen").style.display = "none";
-}
-
 function playMusic() {
   const music = document.getElementById("bgMusic");
-  music.volume = 0.6;
+  music.volume = 0.7;
   music.play();
   document.getElementById("musicBtn").innerText = "Music Playing 💖";
 }
