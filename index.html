@@ -3,20 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I'm Sorry Bubu 💖</title>
+<title>Sorry Bubu 💖</title>
 
 <style>
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
- font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ffd6e8, #d6f0ff);
   text-align: center;
   color: #444;
   overflow-x: hidden;
 }
 
+/* Start screen */
+#startScreen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff9ec4, #ffd6e8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+  flex-direction: column;
+  color: white;
+}
+
+#startScreen button {
+  padding: 15px 25px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  color: #ff4d88;
+  margin-top: 20px;
+}
+
+/* Main content */
 .container {
   padding: 20px 15px 70px;
   max-width: 500px;
@@ -65,8 +89,8 @@ button {
 
 .heart {
   position: absolute;
-  color: #ff6fa5;
   animation: floatUp linear infinite;
+  color: #ff6fa5;
 }
 
 @keyframes floatUp {
@@ -75,22 +99,23 @@ button {
 }
 
 /* Forgive section */
-#forgiveSection {
-  position: relative;
-  min-height: 120px;
-}
-
-#noBtn {
-  position: absolute;
-}
+#forgiveSection { position: relative; min-height: 120px; }
+#noBtn { position: absolute; }
 </style>
 </head>
 
 <body>
 
+<!-- Start Music Screen -->
+<div id="startScreen">
+  <h2>For Bubu 💖</h2>
+  <p>I made something special for you…</p>
+  <button onclick="startExperience()">Tap to Open 💌</button>
+</div>
+
 <div class="hearts-bg" id="hearts"></div>
 
-<div class="container" onclick="startMusicOnce()">
+<div class="container">
   <h1>Hey Bubu… 💌</h1>
 
   <div class="card">
@@ -125,21 +150,17 @@ button {
   </div>
 </div>
 
-<!-- Background Music -->
+<!-- Music -->
 <audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-let musicStarted = false;
-
-function startMusicOnce() {
-  if (!musicStarted) {
-    const music = document.getElementById("bgMusic");
-    music.volume = 0.6;
-    music.play();
-    musicStarted = true;
-  }
+function startExperience() {
+  document.getElementById("startScreen").style.display = "none";
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.6;
+  music.play();
 }
 
 function showApology() {
