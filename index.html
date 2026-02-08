@@ -18,7 +18,7 @@ body {
 }
 
 .container {
-  padding: 20px 15px 60px;
+  padding: 20px 15px 70px;
   max-width: 500px;
   margin: auto;
   position: relative;
@@ -49,9 +49,11 @@ button {
   max-width: 260px;
 }
 
+button:active { transform: scale(0.95); }
+
 .hidden { display: none; }
 
-/* Floating hearts */
+/* Floating Hearts */
 .hearts-bg {
   position: fixed;
   width: 100%;
@@ -74,20 +76,7 @@ button {
   to { transform: translateY(-10vh); opacity: 0; }
 }
 
-.gallery {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.gallery img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin: 5px;
-}
-
+/* Forgive section */
 #forgiveSection {
   position: relative;
   min-height: 120px;
@@ -95,12 +84,6 @@ button {
 
 #noBtn {
   position: absolute;
-}
-
-.music-btn {
-  background: #ff4d88;
-  font-size: 14px;
-  padding: 10px 14px;
 }
 </style>
 </head>
@@ -119,25 +102,17 @@ button {
 
   <div id="apology" class="hidden card">
     <h2>I’m Really Sorry, Bubu 💖</h2>
-    <p>You mean so much to me, and I hate that I caused you pain.</p>
-    <p>I miss our laughs and our moments 🌸</p>
+    <p>You mean so much to me, and I never want to be the reason you feel sad.</p>
+    <p>I miss our laughs, our talks, and our cute little moments 🌸</p>
   </div>
 
   <div id="reasons" class="hidden card">
     <h2>Reasons I Love You 💗</h2>
-    <p>• Your smile</p>
-    <p>• Your kindness</p>
-    <p>• Our memories</p>
-    <p>• Everything about you, Bubu 💞</p>
-  </div>
-
-  <div id="memories" class="hidden card">
-    <h2>Our Memories 📸</h2>
-    <div class="gallery">
-      <img src="https://via.placeholder.com/150">
-      <img src="https://via.placeholder.com/150">
-      <img src="https://via.placeholder.com/150">
-    </div>
+    <p>• Your smile makes my whole day better</p>
+    <p>• Your kindness and soft heart</p>
+    <p>• The way you care about everyone</p>
+    <p>• Every moment with you feels special</p>
+    <p>• Because you're YOU, Bubu 💞</p>
   </div>
 
   <div id="forgiveSection" class="hidden card">
@@ -148,26 +123,24 @@ button {
 
   <div id="finalMessage" class="hidden card">
     <h2>Thank You, Bubu 🥹💞</h2>
-    <p>I promise to do better and love you the way you deserve 🌷</p>
+    <p>I promise to do better, listen more, and love you the way you deserve 🌷</p>
   </div>
-
-  <button class="music-btn" onclick="playMusic()">Play Music 🎵</button>
 </div>
 
-<audio id="bgMusic" loop>
+<!-- Autoplay Background Music -->
+<audio id="bgMusic" autoplay loop>
   <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function showApology() {
-  apology.classList.remove("hidden");
-  reasons.classList.remove("hidden");
-  memories.classList.remove("hidden");
-  forgiveSection.classList.remove("hidden");
+  document.getElementById("apology").classList.remove("hidden");
+  document.getElementById("reasons").classList.remove("hidden");
+  document.getElementById("forgiveSection").classList.remove("hidden");
 }
 
 function forgiven() {
-  finalMessage.classList.remove("hidden");
+  document.getElementById("finalMessage").classList.remove("hidden");
 }
 
 function moveNoButton() {
@@ -177,10 +150,6 @@ function moveNoButton() {
   const maxY = section.offsetHeight - btn.offsetHeight - 10;
   btn.style.left = Math.random() * maxX + "px";
   btn.style.top = Math.random() * maxY + "px";
-}
-
-function playMusic() {
-  document.getElementById("bgMusic").play();
 }
 
 function createHeart() {
