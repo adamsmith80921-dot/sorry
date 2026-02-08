@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry Bubu 💖</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: linear-gradient(135deg, #ffd6e8, #d6f0ff);
+  overflow-x: hidden;
+  text-align: center;
+  color: #444;
+}
+
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  color: #ff4d88;
+  font-size: 32px;
+}
+
+button {
+  background-color: #ff85a2;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: transform 0.2s ease, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background-color: #ff5c8a;
+}
+
+.hidden { display: none; }
+
+.card {
+  background: white;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.hearts-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  color: #ff6fa5;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.gallery img {
+  width: 100px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+#noBtn {
+  position: relative;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts-bg" id="hearts"></div>
+
+<div class="container">
+  <h1>Hey Bubu… 💌</h1>
+  <div class="card">
+    <p>
+      I know I messed up… and I hate that I hurt you.  
+      You’re too important to me to pretend it didn’t matter.
+    </p>
+    <button onclick="showApology()">Click if you're still mad 🥺</button>
+  </div>
+
+  <div id="apology" class="hidden card">
+    <h2>I’m Really Sorry, Bubu 💖</h2>
+    <p>
+      Not just for what happened… but for making you feel anything less than loved.
+      You mean so much to me, more than my ego, more than being right, more than anything.
+    </p>
+    <p>
+      I don’t want a world where we stay upset with each other.  
+      I want our laughs, our talks, our silly moments back. 🌸
+    </p>
+  </div>
+
+  <div id="reasons" class="hidden card">
+    <h2>Reasons I Love You 💗</h2>
+    <p>• Your smile fixes my worst days</p>
+    <p>• The way you care about people</p>
+    <p>• Your cute anger face (yes, even that 😭)</p>
+    <p>• Our memories together</p>
+    <p>• Because you're YOU, Bubu 💞</p>
+  </div>
+
+  <div id="memories" class="hidden card">
+    <h2>Our Memories 📸</h2>
+    <div class="gallery">
+      <!-- Replace these with your own photos later -->
+      <img src="https://via.placeholder.com/100" alt="memory">
+      <img src="https://via.placeholder.com/100" alt="memory">
+      <img src="https://via.placeholder.com/100" alt="memory">
+    </div>
+    <p>Every moment with you means the world to me.</p>
+  </div>
+
+  <div id="forgiveSection" class="hidden card">
+    <h2>Can You Forgive Me? 🥺</h2>
+    <button onclick="forgiven()">Yes 💖</button>
+    <button id="noBtn" onmouseover="moveNoButton()">No 😤</button>
+  </div>
+
+  <div id="finalMessage" class="hidden card">
+    <h2>YAYYY 🥹💞</h2>
+    <p>I promise to do better, listen more, and love you the way you deserve, Bubu 🌷</p>
+    <p>Thank you for giving me another chance 💖</p>
+  </div>
+</div>
+
+<!-- Soft background music -->
+<audio autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showApology() {
+  document.getElementById("apology").classList.remove("hidden");
+  document.getElementById("reasons").classList.remove("hidden");
+  document.getElementById("memories").classList.remove("hidden");
+  document.getElementById("forgiveSection").classList.remove("hidden");
+}
+
+function forgiven() {
+  document.getElementById("finalMessage").classList.remove("hidden");
+}
+
+function moveNoButton() {
+  const btn = document.getElementById("noBtn");
+  btn.style.position = "absolute";
+  btn.style.top = Math.random() * 200 + "px";
+  btn.style.left = Math.random() * 200 + "px";
+}
+
+// Floating hearts generator
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+  document.getElementById("hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
