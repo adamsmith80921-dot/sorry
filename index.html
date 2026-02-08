@@ -17,7 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Start screen */
 #startScreen {
   position: fixed;
   inset: 0;
@@ -40,17 +39,15 @@ body {
   margin-top: 20px;
 }
 
-/* Main content */
 .container {
-  padding: 20px 15px 70px;
+  padding: 20px 15px 100px;
   max-width: 500px;
   margin: auto;
   position: relative;
   z-index: 1;
 }
 
-h1 { color: #ff4d88; font-size: 26px; }
-h2 { color: #ff4d88; }
+h1, h2 { color: #ff4d88; }
 
 .card {
   background: white;
@@ -75,7 +72,6 @@ button {
 
 .hidden { display: none; }
 
-/* Floating hearts */
 .hearts-bg {
   position: fixed;
   width: 100%;
@@ -98,19 +94,30 @@ button {
   to { transform: translateY(-10vh); opacity: 0; }
 }
 
-/* Forgive section */
 #forgiveSection { position: relative; min-height: 120px; }
 #noBtn { position: absolute; }
+
+/* Music button */
+#musicBtn {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4d88;
+  color: white;
+  border-radius: 30px;
+  padding: 12px 20px;
+  z-index: 10;
+}
 </style>
 </head>
 
 <body>
 
-<!-- Start Music Screen -->
 <div id="startScreen">
   <h2>For Bubu 💖</h2>
   <p>I made something special for you…</p>
-  <button onclick="startExperience()">Tap to Open 💌</button>
+  <button onclick="startExperience()">Open It 💌</button>
 </div>
 
 <div class="hearts-bg" id="hearts"></div>
@@ -150,32 +157,39 @@ button {
   </div>
 </div>
 
-<!-- Music -->
-<audio id="bgMusic" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+<!-- Visible Music Button -->
+<button id="musicBtn" onclick="playMusic()">Play Our Song 🎵</button>
+
+<!-- Reliable Audio Source -->
+<audio id="bgMusic" loop controls style="display:none;">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 function startExperience() {
   document.getElementById("startScreen").style.display = "none";
+}
+
+function playMusic() {
   const music = document.getElementById("bgMusic");
   music.volume = 0.6;
   music.play();
+  document.getElementById("musicBtn").innerText = "Music Playing 💖";
 }
 
 function showApology() {
-  document.getElementById("apology").classList.remove("hidden");
-  document.getElementById("reasons").classList.remove("hidden");
-  document.getElementById("forgiveSection").classList.remove("hidden");
+  apology.classList.remove("hidden");
+  reasons.classList.remove("hidden");
+  forgiveSection.classList.remove("hidden");
 }
 
 function forgiven() {
-  document.getElementById("finalMessage").classList.remove("hidden");
+  finalMessage.classList.remove("hidden");
 }
 
 function moveNoButton() {
-  const btn = document.getElementById("noBtn");
-  const section = document.getElementById("forgiveSection");
+  const btn = noBtn;
+  const section = forgiveSection;
   const maxX = section.offsetWidth - btn.offsetWidth - 10;
   const maxY = section.offsetHeight - btn.offsetHeight - 10;
   btn.style.left = Math.random() * maxX + "px";
@@ -189,7 +203,7 @@ function createHeart() {
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
   heart.style.fontSize = (Math.random() * 18 + 14) + "px";
-  document.getElementById("hearts").appendChild(heart);
+  hearts.appendChild(heart);
   setTimeout(() => heart.remove(), 6000);
 }
 setInterval(createHeart, 400);
